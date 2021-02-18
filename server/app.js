@@ -1,10 +1,20 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
+const mongoose = require("mongoose");
 
 const app = express();
 
-const PORT = 4000;
+mongoose.connect(
+'mongodb+srv://felipe:tCFRohuLEqBUhvAB@felipecluster.jpbc6.mongodb.net/gql-nestninja',
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+  (error, res) => {
+    if (error) throw error;
+    else console.log('Base de datos online');
+  },
+);
+
+const PORT = 3000;
 
 app.use(
 	"/graphql",
