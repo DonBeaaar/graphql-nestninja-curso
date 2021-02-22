@@ -1,29 +1,33 @@
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schema/schema");
-const mongoose = require("mongoose");
+const express = require('express');
+const {graphqlHTTP} = require('express-graphql');
+const schema = require('./schema/schema');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
+//cors
+app.use(cors());
+
 mongoose.connect(
-'mongodb+srv://felipe:tCFRohuLEqBUhvAB@felipecluster.jpbc6.mongodb.net/gql-nestninja',
-  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+  process.env.MONGO_URI,
+  {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true},
   (error, res) => {
     if (error) throw error;
     else console.log('Base de datos online');
   },
 );
 
-const PORT = 3000;
+const PORT = 4000;
 
 app.use(
-	"/graphql",
-	graphqlHTTP({
-		schema,
-		graphiql: true,
-	})
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  }),
 );
 
 app.listen(PORT, () => {
-	console.log("Escuchando en el puerto: " + PORT);
+  console.log('Escuchando en el puerto: ' + PORT);
 });
