@@ -1,6 +1,6 @@
-#Servidor Backend del proyecto
+# Servidor Backend del proyecto
 
-##Pasos a seguir
+## Pasos a seguir
 
 ### String de conexion a MongoDB
 
